@@ -9,7 +9,6 @@ module Devise
 
       def new
         respond *authorize_endpoint.call(request.env)
-        render :layout => false
       end
 
       def create
