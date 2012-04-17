@@ -33,3 +33,6 @@ tmp
 log
 *.log
 *.sqlite3
+# EMACS
+\#*
+.\#*

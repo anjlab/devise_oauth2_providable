@@ -1,7 +1,6 @@
 module Devise
   module Oauth2Providable
     class AuthorizationsController < ApplicationController
-      layout nil
       before_filter :authenticate_user!
       rescue_from Rack::OAuth2::Server::Authorize::BadRequest do |e|
         @error = e
@@ -10,6 +9,7 @@ module Devise
 
       def new
         respond *authorize_endpoint.call(request.env)
+        render :layout => false
       end
 
       def create
@@ -25,7 +25,7 @@ module Devise
         if response.redirect?
           redirect_to header['Location']
         else
-          render :new
+          render :new, :layout => false
         end
       end
 
