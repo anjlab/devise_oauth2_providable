@@ -2,7 +2,7 @@ module Devise
   module Oauth2Providable
     class AuthorizationsController < ApplicationController
       before_filter :authenticate_user!
-
+      layout nil
       rescue_from Rack::OAuth2::Server::Authorize::BadRequest do |e|
         @error = e
         render :error, :status => e.status
