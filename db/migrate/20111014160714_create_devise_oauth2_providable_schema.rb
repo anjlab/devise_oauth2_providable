@@ -1,6 +1,7 @@
 class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
   def change
     create_table :oauth2_clients do |t|
+      t.belongs_to :user
       t.string :name
       t.string :redirect_uri
       t.string :website

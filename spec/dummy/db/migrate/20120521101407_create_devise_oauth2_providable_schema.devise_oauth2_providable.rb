@@ -1,6 +1,8 @@
+# This migration comes from devise_oauth2_providable (originally 20111014160714)
 class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
   def change
     create_table :oauth2_clients do |t|
+      t.belongs_to :user
       t.string :name
       t.string :redirect_uri
       t.string :website
@@ -42,7 +44,6 @@ class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
       t.belongs_to :user, :client
       t.string :token
       t.datetime :expires_at
-      t.string :redirect_uri
       t.timestamps
     end
     change_table :oauth2_authorization_codes do |t|
