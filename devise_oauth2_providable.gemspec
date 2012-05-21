@@ -14,16 +14,16 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "devise_oauth2_providable"
 
-  s.add_runtime_dependency(%q<rails>, [">= 3.1.0"])
-  s.add_runtime_dependency(%q<devise>, [">= 1.4.3"])
-  s.add_runtime_dependency(%q<rack-oauth2>, ["~> 0.11.0"])
-  s.add_development_dependency(%q<rspec-rails>, ['2.6.1'])
-  s.add_development_dependency(%q<sqlite3>, ['1.3.4'])
-  s.add_development_dependency(%q<shoulda-matchers>, ['1.0.0.beta3'])
-  s.add_development_dependency(%q<pry>, ['0.9.6.2'])
-  s.add_development_dependency(%q<factory_girl>, ['2.2.0'])
-  s.add_development_dependency(%q<factory_girl_rspec>, ['0.0.1'])
-  s.add_development_dependency(%q<rake>, ['0.9.2.2'])
+  s.add_runtime_dependency "rails", ">= 3.2.0"
+  s.add_runtime_dependency "devise", ">= 2.1.0"
+  s.add_runtime_dependency "rack-oauth2", "~> 0.14.4"
+
+  s.add_development_dependency "rspec-rails", '>= 2.6.2'
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "shoulda-matchers", ">=1.0.0"
+  s.add_development_dependency "pry-rails"
+  s.add_development_dependency "factory_girl_rspec", '>= 0.0.1'
+  s.add_development_dependency "rake", '>= 0.9.2.2'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
