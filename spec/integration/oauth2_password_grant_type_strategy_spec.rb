@@ -4,16 +4,16 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
   describe 'POST /oauth2/token' do
     describe 'with grant_type=password' do
       context 'with valid params' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create(:user)
 
           params = {
             :grant_type => 'password',
             :client_id => client.identifier,
             :client_secret => client.secret,
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
 
           post '/oauth2/token', params
@@ -27,14 +27,14 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with valid params and client id/secret in basic auth header' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
 
           params = {
             :grant_type => 'password',
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
 
           auth_header = ActionController::HttpAuthentication::Basic.encode_credentials client.identifier, client.secret
@@ -50,13 +50,13 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client id in basic auth header' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
           params = {
             :grant_type => 'password',
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
           auth_header = ActionController::HttpAuthentication::Basic.encode_credentials 'invalid client id', client.secret
           post '/oauth2/token', params, 'HTTP_AUTHORIZATION' => auth_header
@@ -72,13 +72,13 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client secret in basic auth header' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
           params = {
             :grant_type => 'password',
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
           auth_header = ActionController::HttpAuthentication::Basic.encode_credentials client.identifier, 'invalid secret'
           post '/oauth2/token', params, 'HTTP_AUTHORIZATION' => auth_header
@@ -94,9 +94,9 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid password' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
 
           params = {
             :grant_type => 'password',
@@ -119,16 +119,16 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client_id' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
 
           params = {
             :grant_type => 'password',
             :client_id => 'invalid',
             :client_secret => client.secret,
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
 
           post '/oauth2/token', params
@@ -144,16 +144,16 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
         end
       end
       context 'with invalid client_secret' do
-        with :client
+        let(:client) { create(:client) }
         before do
-          @user = User.create! :email => 'ryan@socialcast.com', :password => 'test'
+          @user = create :user
 
           params = {
             :grant_type => 'password',
             :client_id => client.identifier,
             :client_secret => 'invalid',
             :username => @user.email,
-            :password => 'test'
+            :password => 'test123456'
           }
 
           post '/oauth2/token', params

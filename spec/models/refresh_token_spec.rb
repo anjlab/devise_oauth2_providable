@@ -4,7 +4,7 @@ describe Devise::Oauth2Providable::RefreshToken do
   it { Devise::Oauth2Providable::RefreshToken.table_name.should == 'oauth2_refresh_tokens' }
 
   describe 'basic refresh token instance' do
-    with :client
+    let(:client) { create(:client) }
     subject do
       Devise::Oauth2Providable::RefreshToken.create! :client => client
     end

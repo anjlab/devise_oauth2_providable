@@ -3,8 +3,8 @@ require 'spec_helper'
 describe ProtectedController do
 
   describe 'get :index' do
-    with :client
-    with :user
+    let(:user) { create(:user) }
+    let(:client) { create(:client) }
     before do
       @token = Devise::Oauth2Providable::AccessToken.create! :client => client, :user => user
     end

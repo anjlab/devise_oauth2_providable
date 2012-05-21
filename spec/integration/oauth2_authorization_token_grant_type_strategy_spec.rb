@@ -4,10 +4,10 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
   describe 'POST /oauth2/token' do
     describe 'with grant_type=authorization_code' do
       context 'with valid params' do
-        with :client
-        with :user
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
-          @authorization_code = user.authorization_codes.create(:client_id => client, :redirect_uri => client.redirect_uri)
+          @authorization_code = user.authorization_codes.create(:client => client, :redirect_uri => client.redirect_uri)
           params = {
             :grant_type => 'authorization_code',
             :client_id => client.identifier,
@@ -32,8 +32,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with expired authorization_code' do
-        with :client
-        with :user
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           timenow = 2.days.from_now
           Time.stub!(:now).and_return(timenow)
@@ -59,8 +59,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid authorization_code' do
-        with :client
-        with :user
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @authorization_code = user.authorization_codes.create(:client_id => client, :redirect_uri => client.redirect_uri)
           params = {
@@ -83,8 +83,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid client_secret' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @authorization_code = user.authorization_codes.create(:client_id => client, :redirect_uri => client.redirect_uri)
           params = {
@@ -107,8 +107,8 @@ describe Devise::Strategies::Oauth2AuthorizationCodeGrantTypeStrategy do
         end
       end
       context 'with invalid client_id' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @authorization_code = user.authorization_codes.create(:client_id => client, :redirect_uri => client.redirect_uri)
           params = {

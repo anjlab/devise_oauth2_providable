@@ -4,8 +4,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
   describe 'POST /oauth2/token' do
     describe 'with grant_type=refresh_token' do
       context 'with valid params' do
-        with :client
-        with :user
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @refresh_token = client.refresh_tokens.create! :user => user
           params = {
@@ -32,8 +32,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         end
       end
       context 'with expired refresh_token' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           timenow = 2.days.from_now
           Time.stub!(:now).and_return(timenow)
@@ -59,8 +59,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         end
       end
       context 'with invalid refresh_token' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @refresh_token = client.refresh_tokens.create! :user => user
           params = {
@@ -85,8 +85,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         end
       end
       context 'with invalid client_id' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @refresh_token = client.refresh_tokens.create! :user => user
           params = {
@@ -109,8 +109,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         end
       end
       context 'with invalid client_secret' do
-        with :user
-        with :client
+        let(:user) { create(:user) }
+        let(:client) { create(:client) }
         before do
           @refresh_token = client.refresh_tokens.create! :user => user
           params = {

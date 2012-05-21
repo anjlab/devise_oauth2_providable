@@ -47,7 +47,7 @@ module Devise
               # will still work
               resourced_routes << route.requirements[:controller].gsub("#{engine_name.downcase}/", "").to_sym
             end
-
+            puts "route.verb ------------------------- #{route.verb}"
             verb = (route.verb.blank? ? "GET" : route.verb).downcase.to_sym
             send(verb, path, requirements) if respond_to?(verb)
           end

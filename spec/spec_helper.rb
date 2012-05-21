@@ -5,10 +5,7 @@ require File.expand_path("dummy/config/environment.rb",  spec_root)
 
 require 'pry'
 require 'rspec/rails'
-require 'shoulda-matchers'
-require 'factory_girl_rspec'
-FactoryGirl.definition_file_paths = [File.join(spec_root, 'factories')]
-FactoryGirl.find_definitions
+require 'factories'
 
 ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 
@@ -17,7 +14,9 @@ ENGINE_RAILS_ROOT=File.join(File.dirname(__FILE__), '../')
 Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, :type => :controller
+  config.mock_with :rspec
 
   config.use_transactional_fixtures = true
 

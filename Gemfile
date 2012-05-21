@@ -4,3 +4,5 @@ source "http://rubygems.org"
 gemspec
 
 gem 'sqlite3'
+gem 'shoulda-matchers'
+gem 'factory_girl_rails'

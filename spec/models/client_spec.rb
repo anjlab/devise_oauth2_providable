@@ -4,7 +4,7 @@ describe Devise::Oauth2Providable::Client do
   it { Devise::Oauth2Providable::Client.table_name.should == 'oauth2_clients' }
 
   describe 'basic client instance' do
-    with :client
+    let(:client) { create(:client) }
     subject { client }
     it { should validate_presence_of :name }
     it { should validate_uniqueness_of :name }
