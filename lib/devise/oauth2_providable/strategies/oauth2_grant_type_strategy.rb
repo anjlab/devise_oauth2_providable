@@ -33,6 +33,22 @@ module Devise
         body[:error_description] = description if description
         custom! [400, {'Content-Type' => 'application/json'}, [body.to_json]]
       end
+
+      # HACK: bring back old devise validate logic
+      def validate(resource, &block)
+        result = resource && resource.valid_for_authentication?(&block)
+
+        case result
+        when String, Symbol
+          fail!(result)
+          false
+        when TrueClass
+          decorate(resource)
+          true
+        else
+          result
+        end
+      end
     end
   end
 end

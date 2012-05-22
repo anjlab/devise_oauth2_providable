@@ -15,6 +15,7 @@ module Devise
           oauth_error! :invalid_grant, 'invalid password authentication request'
         end
       end
+
     end
   end
 end
