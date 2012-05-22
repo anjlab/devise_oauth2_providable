@@ -1,3 +1,4 @@
+# This migration comes from devise_oauth2_providable (originally 20111014160714)
 class CreateDeviseOauth2ProvidableSchema < ActiveRecord::Migration
   def change
     create_table :oauth2_clients do |t|
