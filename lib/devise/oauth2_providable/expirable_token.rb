@@ -31,7 +31,7 @@ module Devise
       module LocalInstanceMethods
         # number of seconds until the token expires
         def expires_in
-          (expires_at - Time.now.utc).to_i
+          (expires_at.utc - Time.now.utc).to_i
         end
 
         # forcefully expire the token
