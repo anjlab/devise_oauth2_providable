@@ -117,6 +117,31 @@ describe Devise::Strategies::Oauth2PasswordGrantTypeStrategy do
           response.body.should match_json(expected)
         end
       end
+      context 'with invalid user' do
+        let(:client) { create(:client) }
+        before do
+          @user = create :user
+
+          params = {
+            :grant_type => 'password',
+            :client_id => client.identifier,
+            :client_secret => client.secret,
+            :username => 'bla@bla.com',
+            :password => 'bar'
+          }
+
+          post '/oauth2/token', params
+        end
+        it { response.code.to_i.should == 400 }
+        it { response.content_type.should == 'application/json'  }
+        it 'returns json' do
+          expected = {
+            :error_description => "invalid password authentication request",
+            :error => "invalid_grant"
+          }
+          response.body.should match_json(expected)
+        end
+      end
       context 'with invalid client_id' do
         let(:client) { create(:client) }
         before do

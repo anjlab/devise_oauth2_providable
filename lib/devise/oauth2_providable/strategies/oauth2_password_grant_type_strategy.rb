@@ -11,11 +11,10 @@ module Devise
         resource = mapping.to.find_for_authentication(mapping.to.authentication_keys.first => params[:username])
         if validate(resource) { resource.valid_password?(params[:password]) }
           success! resource
-        elsif !halted?
+        else
           oauth_error! :invalid_grant, 'invalid password authentication request'
         end
       end
-
     end
   end
 end
