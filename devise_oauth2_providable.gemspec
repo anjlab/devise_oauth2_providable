@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "devise/oauth2_providable/version"
 
 Gem::Specification.new do |s|
-  s.name        = "devise_oauth2_providable"
+  s.name        = "anjlab-devise-oauth2-providable"
   s.version     = Devise::Oauth2Providable::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ryan Sonnek"]
@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{OAuth2 Provider for Rails3 applications}
   s.description = %q{Rails3 engine that adds OAuth2 Provider support to any application built with Devise authentication}
-
-  s.rubyforge_project = "devise_oauth2_providable"
 
   s.add_runtime_dependency "rails", ">= 3.2.0"
   s.add_runtime_dependency "devise", ">= 2.1.0"
