@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ryan Sonnek"]
   s.email       = ["ryan@socialcast.com"]
-  s.homepage    = ""
-  s.summary     = %q{OAuth2 Provider for Rails3 applications}
+  s.homepage    = "https://github.com/anjlab/devise_oauth2_providable"
+  s.summary     = %q{OAuth2 Provider for Rails3 applications with Devise 2.1.0}
   s.description = %q{Rails3 engine that adds OAuth2 Provider support to any application built with Devise authentication}
 
   s.add_runtime_dependency "rails", ">= 3.2.0"
