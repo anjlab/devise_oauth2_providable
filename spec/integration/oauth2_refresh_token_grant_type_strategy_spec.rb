@@ -19,6 +19,15 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
         end
         it { response.code.to_i.should == 200 }
         it { response.content_type.should == 'application/json' }
+        it "returns second time too" do 
+          params = {
+            :grant_type => 'refresh_token',
+            :client_id => client.identifier,
+            :client_secret => client.secret,
+            :refresh_token => @refresh_token.token
+          }
+          post '/oauth2/token', params
+        end
         it 'returns json' do
           token = Devise::Oauth2Providable::AccessToken.last
           refresh_token = @refresh_token
@@ -30,6 +39,8 @@ describe Devise::Strategies::Oauth2RefreshTokenGrantTypeStrategy do
           }
           response.body.should match_json(expected)
         end
+
+        
       end
       context 'with expired refresh_token' do
         let(:user) { create(:user) }
